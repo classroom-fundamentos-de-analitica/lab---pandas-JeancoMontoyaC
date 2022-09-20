@@ -28,36 +28,25 @@ def pregunta_02():
 
 
 def pregunta_03():
-    tbl00=tbl0.groupby("_c1").mean()
-
+    tbl00=tbl0.groupby("_c1").size()
     return tbl00
-print(pregunta_03())
+
 
 
 def pregunta_04():
-    """
-    Calcule el promedio de _c2 por cada letra de la _c1 del archivo `tbl0.tsv`.
-
-    Rta/
-    A    4.625000
-    B    5.142857
-    C    5.400000
-    D    3.833333
-    E    4.785714
-    Name: _c2, dtype: float64
-    """
     tbl00=tbl0.groupby("_c1").mean().pop("_c2")
-
     return tbl00
-print(pregunta_04())
+
 
 
 
 def pregunta_05():
+
+    tbl00=tbl0.groupby("_c1").max()
+    tbl00=tbl00.filter(items=["_c1","_c2"])
     """
     Calcule el valor máximo de _c2 por cada letra en la columna _c1 del archivo
     `tbl0.tsv`.
-
     Rta/
     _c1
     A    9
@@ -67,8 +56,8 @@ def pregunta_05():
     E    9
     Name: _c2, dtype: int64
     """
-    return
-
+    return tbl00
+print(pregunta_05())
 
 def pregunta_06():
     """
