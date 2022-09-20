@@ -42,8 +42,8 @@ def pregunta_04():
 
 def pregunta_05():
 
-    tbl00=tbl0.groupby("_c1").max()
-    tbl00=tbl00.filter(items=["_c1","_c2"])
+    tbl00=tbl0.groupby("_c1").max().pop("_c2")
+    
     """
     Calcule el valor máximo de _c2 por cada letra en la columna _c1 del archivo
     `tbl0.tsv`.
