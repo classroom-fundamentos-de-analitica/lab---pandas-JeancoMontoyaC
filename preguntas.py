@@ -43,23 +43,13 @@ def pregunta_04():
 def pregunta_05():
 
     tbl00=tbl0.groupby("_c1").max().pop("_c2")
-    
-    """
-    Calcule el valor máximo de _c2 por cada letra en la columna _c1 del archivo
-    `tbl0.tsv`.
-    Rta/
-    _c1
-    A    9
-    B    9
-    C    9
-    D    7
-    E    9
-    Name: _c2, dtype: int64
-    """
     return tbl00
-print(pregunta_05())
+
 
 def pregunta_06():
+    
+    tbl00=list(tbl00[["_c1"]])
+
     """
     Retorne una lista con los valores unicos de la columna _c4 de del archivo `tbl1.csv`
     en mayusculas y ordenados alfabéticamente.
@@ -68,26 +58,19 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    return
+    return 
+
 
 
 def pregunta_07():
-    """
-    Calcule la suma de la _c2 por cada letra de la _c1 del archivo `tbl0.tsv`.
+    tbl00=tbl0.groupby("_c1").sum().pop("_c2")
 
-    Rta/
-    _c1
-    A    37
-    B    36
-    C    27
-    D    23
-    E    67
-    Name: _c2, dtype: int64
-    """
-    return
+    return tbl00
+
 
 
 def pregunta_08():
+    tbl0["suma"]=0
     """
     Agregue una columna llamada `suma` con la suma de _c0 y _c2 al archivo `tbl0.tsv`.
 
@@ -102,8 +85,8 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
-    return
-
+    return tbl0
+print(pregunta_08())
 
 def pregunta_09():
     """
