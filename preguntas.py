@@ -14,43 +14,24 @@ tbl1 = pd.read_csv("tbl1.tsv", sep="\t")
 tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
 
 
+
 def pregunta_01():
-    """
-    ¿Cuál es la cantidad de filas en la tabla `tbl0.tsv`?
+    filas,columnas=tbl0.shape
+    return filas
 
-    Rta/
-    40
-
-    """
-    return
 
 
 def pregunta_02():
-    """
-    ¿Cuál es la cantidad de columnas en la tabla `tbl0.tsv`?
-
-    Rta/
-    4
-
-    """
-    return
+    filas,columnas=tbl0.shape
+    return columnas
+   
 
 
 def pregunta_03():
-    """
-    ¿Cuál es la cantidad de registros por cada letra de la columna _c1 del archivo
-    `tbl0.tsv`?
+    tbl00=tbl0.groupby("_c1").mean()
 
-    Rta/
-    A     8
-    B     7
-    C     5
-    D     6
-    E    14
-    Name: _c1, dtype: int64
-
-    """
-    return
+    return tbl00
+print(pregunta_03())
 
 
 def pregunta_04():
@@ -65,7 +46,11 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
+    tbl00=tbl0.groupby("_c1").mean().pop("_c2")
+
+    return tbl00
+print(pregunta_04())
+
 
 
 def pregunta_05():
