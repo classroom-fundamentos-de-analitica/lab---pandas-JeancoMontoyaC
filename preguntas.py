@@ -24,7 +24,7 @@ def pregunta_01():
 def pregunta_02():
     filas,columnas=tbl0.shape
     return columnas
-   
+
 
 
 def pregunta_03():
@@ -47,81 +47,46 @@ def pregunta_05():
 
 
 def pregunta_06():
-    
     tbl00 = tbl1['_c4'].unique()
-
-    """
-    Retorne una lista con los valores unicos de la columna _c4 de del archivo `tbl1.csv`
-    en mayusculas y ordenados alfabéticamente.
-
-    Rta/
-    ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-
-    """
+    tbl00=sorted(map(lambda x: x.upper(),tbl00))
     return tbl00
-print(pregunta_06())
+
 
 
 def pregunta_07():
     tbl00=tbl0.groupby("_c1").sum().pop("_c2")
-
     return tbl00
 
 
 
 def pregunta_08():
-    tbl0["suma"]=0
-    """
-    Agregue una columna llamada `suma` con la suma de _c0 y _c2 al archivo `tbl0.tsv`.
+    sumas =list( tbl0.sum(numeric_only=True, axis='columns'))
+    tbl00=tbl0.copy()
+    tbl00["sumas"]=sumas
+    return tbl00
 
-    Rta/
-        _c0 _c1  _c2         _c3  suma
-    0     0   E    1  1999-02-28     1
-    1     1   A    2  1999-10-28     3
-    2     2   B    5  1998-05-02     7
-    ...
-    37   37   C    9  1997-07-22    46
-    38   38   E    1  1999-09-28    39
-    39   39   E    5  1998-01-26    44
-
-    """
-    return tbl0
 
 
 def pregunta_09():
-    """
-    Agregue el año como una columna al archivo `tbl0.tsv`.
-
-    Rta/
-        _c0 _c1  _c2         _c3  year
-    0     0   E    1  1999-02-28  1999
-    1     1   A    2  1999-10-28  1999
-    2     2   B    5  1998-05-02  1998
-    ...
-    37   37   C    9  1997-07-22  1997
-    38   38   E    1  1999-09-28  1999
-    39   39   E    5  1998-01-26  1998
-
-    """
-    return
+    years=list(map(lambda x:x.split("-")[0],list(tbl0["_c3"])))
+    new=tbl0.copy()
+    new["year"]=years
+    return new
 
 
 def pregunta_10():
-    """
-    Construya una tabla que contenga _c1 y una lista separada por ':' de los valores de
-    la columna _c2 para el archivo `tbl0.tsv`.
-
-    Rta/
-                                   _c1
-      _c0
-    0   A              1:1:2:3:6:7:8:9
-    1   B                1:3:4:5:6:8:9
-    2   C                    0:5:6:7:9
-    3   D                  1:2:3:5:5:7
-    4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
-    """
-    return
-
+    valores = list(tbl0[['_c1', '_c2']].groupby(['_c1'])['_c2'].apply(list))
+    c2=[]
+    for letra in valores:
+        texto = ''
+        for valor in sorted(letra):
+            texto += f'{valor}:'
+        
+        c2.append(texto[:-1])
+    return pd.DataFrame({
+        '_c2': c2
+    }, index = pd.Series(['A', 'B', 'C', 'D', 'E'], name='_c1'))
+print(pregunta_10())
 
 def pregunta_11():
     """
