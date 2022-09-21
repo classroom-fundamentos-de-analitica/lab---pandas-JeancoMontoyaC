@@ -60,7 +60,7 @@ def pregunta_07():
 
 
 def pregunta_08():
-    sumas =list( tbl0.sum(numeric_only=True, axis='columns'))
+    sumas =list( tbl0.sum(numeric_only=True, axis=1))
     tbl00=tbl0.copy()
     tbl00["sumas"]=sumas
     return tbl00
