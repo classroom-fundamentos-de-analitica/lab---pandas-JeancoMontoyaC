@@ -80,31 +80,28 @@ def pregunta_10():
     for letra in valores:
         texto = ''
         for valor in sorted(letra):
-            texto += f'{valor}:'
-        
+            texto += str(valor)+":"  
         c2.append(texto[:-1])
-    return pd.DataFrame({
-        '_c2': c2
-    }, index = pd.Series(['A', 'B', 'C', 'D', 'E'], name='_c1'))
-print(pregunta_10())
+    return pd.DataFrame({'_c2': c2}, index = pd.Series(['A', 'B', 'C', 'D', 'E'], name='_c1'))
+
 
 def pregunta_11():
-    """
-    Construya una tabla que contenga _c0 y una lista separada por ',' de los valores de
-    la columna _c4 del archivo `tbl1.tsv`.
+    c5a = tbl2.groupby(['_c0'])['_c5a'].apply(list).tolist()
+    c5b = tbl2.groupby(['_c0'])['_c5b'].apply(list).tolist()
+    c0 = tbl1['_c0'].unique().tolist()
+    c5 = []
+    for i in range(len(c5a)):
+        x = []
+        for j in range(len(c5a[i])):
+            x.append(f'{c5a[i][j]}:{c5b[i][j]}')
+        texto = ''
+        for valor in sorted(x):
+            texto += f'{valor},'
+        c5.append(texto[:-1])
+    return pd.DataFrame({
+        '_c0': c0,
+        '_c5': c5})
 
-    Rta/
-        _c0      _c4
-    0     0    b,f,g
-    1     1    a,c,f
-    2     2  a,c,e,f
-    3     3      a,b
-    ...
-    37   37  a,c,e,f
-    38   38      d,e
-    39   39    a,d,f
-    """
-    return
 
 
 def pregunta_12():
@@ -126,17 +123,9 @@ def pregunta_12():
 
 
 def pregunta_13():
-    """
-    Si la columna _c0 es la clave en los archivos `tbl0.tsv` y `tbl2.tsv`, compute la
-    suma de tbl2._c5b por cada valor en tbl0._c1.
+    join = pd.merge(tbl0, tbl2, on='_c0', how='inner')
 
-    Rta/
-    _c1
-    A    146
-    B    134
-    C     81
-    D    112
-    E    275
-    Name: _c5b, dtype: int64
-    """
-    return
+    respuesta = join[['_c1', '_c5b']].groupby(['_c1']).sum()
+    serie = respuesta.squeeze()
+    return serie
+ 
