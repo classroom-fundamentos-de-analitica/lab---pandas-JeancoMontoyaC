@@ -48,7 +48,7 @@ def pregunta_05():
 
 def pregunta_06():
     
-    tbl00=list(tbl00[["_c1"]])
+    tbl00=tbl00[["_c1"]].unique()
 
     """
     Retorne una lista con los valores unicos de la columna _c4 de del archivo `tbl1.csv`
@@ -58,8 +58,8 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    return 
-
+    return tbl00
+print(pregunta_06())
 
 
 def pregunta_07():
@@ -86,7 +86,7 @@ def pregunta_08():
 
     """
     return tbl0
-print(pregunta_08())
+
 
 def pregunta_09():
     """
